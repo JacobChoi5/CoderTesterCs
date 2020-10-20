@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 namespace CoderTesterCs
 {
@@ -75,7 +76,32 @@ namespace CoderTesterCs
                 {
                     Console.WriteLine(String.Format("{0,-20}{1,-20}", names[i], names2[i]));
                 }
-                
+                //Rearranging for Tester than Coder
+                string[] sortedNames = new string[names.Length];
+                string[] sortedNames2 = new string[names.Length];
+                for (int i = 0; i < names.Length; i++)
+                {
+                    sortedNames[i] = names[i];
+                    sortedNames2[i] = names2[i];
+                }
+                Array.Sort(sortedNames2);
+                for(int i = 0; i < names.Length; i++)
+                {
+                    for (int j = 0; j < names.Length; j++)
+                    {
+                        if (sortedNames2[i].Equals(names2[j]))
+                        {
+                            sortedNames[i] = names[j];
+                        }
+                    }
+                }
+                Console.WriteLine("\n");
+                Console.WriteLine(String.Format("{0,-20}{1,-20}", "Tester", "Coder"));
+                Console.WriteLine("---------------------------------------");
+                for (int i = 0; i < names.Length; i++)
+                {
+                    Console.WriteLine(String.Format("{0,-20}{1,-20}", sortedNames2[i], sortedNames[i]));
+                }
             }
             catch(Exception e)
             {
